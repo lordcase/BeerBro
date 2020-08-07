@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global css  */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  // font-family: 'Open Sans', sans-serif;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
