@@ -1,8 +1,8 @@
 header {
   height: 60px;
-  background-color: #3f51b5;
+  background-color: var(--primary-color);
   padding: 4px;
-  color: #fff;
+  color: var(--alt2-text-color);
 
 }
 .logo {
@@ -27,17 +27,21 @@ nav ul {
   float: left;
   
 }
+nav a, nav li {
+  color: var(--text-color);
+}
 nav li {
   display: inline-block;
   padding: 10px;
   margin-left: 10px;
   background-color: rgba(0,0,0,0.3);
+  transition: all .4s ease-in-out;
 }
 nav li:hover {
   background-color: rgba(0,0,0,0.5);
 }
 
 .search {
-  margin: 6px 40px 6px 0;
-  float: right;;
+  margin: 13px 40px 6px 0;
+  float: right;
 }

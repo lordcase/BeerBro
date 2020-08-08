@@ -1,1 +1,5 @@
-<p>breweries-item works!</p>
+<div class="item-content" [routerLink]="['/breweries', brewery.id]">
+  <h3>{{brewery.name}}</h3>
+  <hr>
+  <div class="data">{{brewery.city}}<br>{{brewery.country}}</div>
+</div>

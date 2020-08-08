@@ -12,10 +12,8 @@ import { BreweryRouteActivator } from './breweries/brewery-detail/brewery-route-
 import { BreweriesListResolver } from './breweries/breweries-list-resolver.service';
 import { HeaderComponent } from './nav/header.component';
 import { FooterComponent } from './nav/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -36,9 +34,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgbModule,
     FormsModule,
     HttpClientModule,
   ],

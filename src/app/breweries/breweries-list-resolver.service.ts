@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core'
+import {Resolve} from '@angular/router'
+import {BreweryService} from './shared/brewery.service'
+import {map} from 'rxjs/operators'
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BreweriesListResolver {
+@Injectable()
+export class BreweriesListResolver implements Resolve<any> {
+  constructor(private breweryService:BreweryService) {
 
-  constructor() { }
+  }
+  resolve() {
+    return this.breweryService.getBreweries().pipe(map(breweries=>breweries))
+  }
 }

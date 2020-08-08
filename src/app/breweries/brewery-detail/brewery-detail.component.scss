@@ -1,0 +1,15 @@
+.item-content {
+  color: var(--text-color);
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  overflow: hidden;
+  margin: 25px;
+  padding: 25px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  transition: all .4s ease-in-out;
+  -webkit-box-shadow: -12px -9px 5px 0px rgba(63,81,181,0.47);
+  -moz-box-shadow: -12px -9px 5px 0px rgba(63,81,181,0.47);
+  box-shadow: -12px -9px 5px 0px rgba(63,81,181,0.47);
+}

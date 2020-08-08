@@ -1,9 +1,17 @@
 /* Global css  */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
-body {
+:root {
+  --primary-color: #3f51b5;
+  --secondary-color: #FFC05C;
+  --text-color: #FFC05C;
+  --alt1-text-color: #3f51b5;
+  --alt2-text-color: #ffffff;
+}
+
+body.custom {
   margin: 0;
+  background-color: var(--secondary-color);
   // font-family: 'Open Sans', sans-serif;
 }
 .img-responsive {
@@ -17,5 +25,6 @@ body {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+*.focus, *.active {
+    outline: none !important;
+}

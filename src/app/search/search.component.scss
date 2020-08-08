@@ -1,9 +1,42 @@
-// input[type="text"] {
-//   background-color: rgba(0, 0, 0, 0.3);
-//     border: 0;
-//     padding: 12px;
-//     line-height: 16px;
-//     font-size: 14px;
-//     margin-left: 30px;
-//     color: #fff;
-// }
+.search-container {
+  width: 300px;
+  position: relative;
+}
+.predictive {
+  width: 200px;
+  max-width: 0px;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 64px;
+  left: 0;
+  border-radius: 5px;
+}
+.predictive .result {
+  padding: 8px;
+  border-bottom: 1px solid var(--secondary-color);
+}
+.predictive .result:last {
+  border: 0;
+}
+.predictive span {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+.predictive span:hover {
+  color: var(--alt2-text-color);
+}
+
+input[type="text"] {
+  transition: all .4s ease-in;
+  width: 130px;
+  padding: 7px;
+}
+input[type="text"]:focus {
+  width: 200px;
+}
+.spinner {
+  position: absolute;
+  top: 4px;
+  left: 180px;
+  color: var(--primary-color);
+}

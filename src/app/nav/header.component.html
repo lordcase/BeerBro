@@ -2,8 +2,8 @@
   <div class="logo"><img class="img-responsive" src="assets/logo_brewnicorn.png" alt="Brewery logo"><div class="logo_typeface">BREWNICORN</div></div>
   <nav>
     <ul>
-      <li>Breweries</li>
-      <li>Favourites</li>
+      <a [routerLink]="['/breweries']"><li>Breweries</li></a>
+      <a [routerLink]="['/favourites']"><li>Favourites</li></a>
     </ul>
   </nav>
   <div class="search"><brew-search></brew-search></div>

@@ -1,11 +1,11 @@
 footer {
   position: fixed;
-  height: 25px;
+  height: 35px;
   bottom: 0;
-  background-color: #3f51b5;
+  background-color: var(--primary-color);
   display: block;
   width: 100%;
   text-align: center;
   padding-top: 10px;
-  color: #fff;
+  color: var(--alt2-text-color);
 }
