@@ -1,9 +1,10 @@
 <div class="search-container">
-  <form [formGroup]="searchGroup">
-    <input formControlName="search" placeholder="Search Brewery..." type="text" (focusout)="handleFocusOut()">
-    <div *ngIf="searching" class="spinner">O</div>
+  <form [formGroup]="searchGroup" (submit)="handleSubmit($event)">
+    <input formControlName="search" placeholder="Search Brewery..." type="text" (focusout)="handleFocusOut()" [(ngModel)]="searchString">
+    <div *ngIf="searching" class="spinner"><img src="assets/Spinner-0.5s-15px.gif"></div>
+    <div *ngIf="!searching" class="spinner count">{{result_count}}</div>
   </form>
-  <div class="predictive">
+  <div class="predictive" [class.open]="isOpen">
     <div *ngFor="let brewery of result" class="result">
       <span [routerLink]="['/breweries', brewery.id]" >{{brewery.name}}</span>
     </div>

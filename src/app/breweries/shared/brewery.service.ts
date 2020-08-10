@@ -14,7 +14,7 @@ export class BreweryService {
   constructor(private http: HttpClient) {
   }
 
-    getBreweries(page:number = 0) {
+    getBreweries(page:number = 1) {
       const PARAMS = new HttpParams()
       return this.http
         .get(API_URL, {params: PARAMS
@@ -27,6 +27,13 @@ export class BreweryService {
     getBrewery(id:number) {
       return this.http
         .get(API_URL + `/${id}`).pipe(
+          map(response => response)
+        );
+    }
+
+    freeSearch(query:string) {
+      return this.http
+        .get(API_URL + `/search?query=${query}`).pipe(
           map(response => response)
         );
     }

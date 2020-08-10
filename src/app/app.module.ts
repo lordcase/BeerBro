@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 
 import { Error404Component } from './errors/error-404.component';
 import { BreweriesListComponent } from './breweries/breweries-list.component';
+import { BreweriesSearchComponent } from './breweries/breweries-search.component';
+import { BreweriesFavouritesComponent } from './breweries/breweries-favourites.component';
 import { BreweriesItemComponent } from './breweries/breweries-item.component';
 import { BreweryDetailComponent } from './breweries/brewery-detail/brewery-detail.component';
 import { BreweryRouteActivator } from './breweries/brewery-detail/brewery-route-activator.service';
@@ -16,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { StoreModule } from '@ngrx/store';
+import { appState} from './state/appstate.reducer'
 
 
 @NgModule({
@@ -24,6 +27,8 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     Error404Component,
     BreweriesListComponent,
+    BreweriesSearchComponent,
+    BreweriesFavouritesComponent,
     BreweriesItemComponent,
     BreweryDetailComponent,
     HeaderComponent,
@@ -37,6 +42,7 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    StoreModule.forRoot({appState}, {}),
   ],
   providers: [
     BreweryRouteActivator,

@@ -1,16 +1,17 @@
 <div class="item-content">
-  <h3>{{brewery?.name}}</h3>
+  <h1>{{brewery?.name}}</h1>
+  <div class="favourite" (click)="handleFavouritization($event)"><i class="far fa-star" *ngIf="!isfaved"></i><i class="fas fa-star" *ngIf="isfaved"></i></div>
   <hr>
-  <div class="data">id {{brewery?.id}}</div>
-  <div class="data">brewery type {{brewery?.brewery_type}}</div>
-  <div class="data">street {{brewery?.street}}</div>
-  <div class="data">city {{brewery?.city}}</div>
-  <div class="data">state {{brewery?.state}}</div>
-  <div class="data">postal_ ode {{brewery?.postal_code}}</div>
-  <div class="data">country {{brewery?.country}}</div>
-  <div class="data">longitude {{brewery?.longitude}}</div>
-  <div class="data">latitude {{brewery?.latitude}}</div>
-  <div class="data">phone {{brewery?.phone}}</div>
-  <div class="data">website url {{brewery?.website_url}}</div>
-  <div class="data">updated at {{brewery?.updated_at}}</div>
+  <div class="container">
+    <div class="term">Website:</div><div class="data"><a href="{{brewery?.website_url}}" target="_blank" rel="noopener noreferrer">{{brewery?.website_url}}</a></div>
+    <div class="term">Type:</div><div class="data"> {{brewery?.brewery_type}}</div>
+    <div class="term">Address:</div><div class="data"> {{brewery?.street}}</div>
+    <div class="term">City:</div><div class="data"> {{brewery?.city}}</div>
+    <div class="term">State:</div><div class="data"> {{brewery?.state}}</div>
+    <div class="term">Postal Code:</div><div class="data"> {{brewery?.postal_code}}</div>
+    <div class="term">Country:</div><div class="data"> {{brewery?.country}}</div>
+    <div class="term">Phone:</div><div class="data"><a href="tel:{{brewery?.phone}}">{{brewery?.phone}}</a></div>
+    <div class="term">Updated at:</div><div class="data"> {{brewery?.updated_at}}</div>
+  </div>
+    <div *ngIf="brewery && brewery.longitude" class="map_img"><a href="https://www.google.com/maps/search/{{brewery?.name.concat(' ',brewery?.city).split(' ').join('+')}}" rel="noopener noreferrer" target='_blank'><img src="https://www.mapquestapi.com/staticmap/v5/map?key=qPrqVlt8eIFpiX38m0ks2QSXB92S5mbd&center={{brewery.latitude}},{{brewery.longitude}}&size=170,300" width="170" height='250' alt="Click for google map search"></a><br><sup>Click map for Google maps search</sup></div>
 </div>

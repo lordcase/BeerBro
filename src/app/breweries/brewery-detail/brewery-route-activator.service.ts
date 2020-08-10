@@ -12,10 +12,8 @@ export class BreweryRouteActivator implements CanActivate {
   } 
   
   canActivate(route: ActivatedRouteSnapshot) {
-    console.log("called",route.paramMap.get('id'))
     this.breweryService.getBrewery(+route.paramMap.get('id'))
     .subscribe((result)=>{
-      console.log("called2",route.paramMap.get('id'))
         if (!!result === false) {
           this.router.navigate(['/404'])
         }

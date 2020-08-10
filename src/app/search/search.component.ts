@@ -19,7 +19,10 @@ export class SearchComponent {
     searchField: FormControl
     searchGroup: FormGroup
     result: Object
-    searching = false;
+    result_count : number = 0
+    searching :boolean = false
+    isOpen :boolean = false
+    searchString: string
   
   
 
@@ -28,24 +31,33 @@ export class SearchComponent {
     this.searchGroup = fb.group({search: this.searchField});
 
     this.searchField.valueChanges.pipe(
-      tap(()=>this.searching = true),
+      tap(()=>{
+        this.searching = true
+        this.isOpen = false
+      }),
       debounceTime(400),
       switchMap(term => this.searchService.search(term)))
       .subscribe((result) => {
+        this.result_count = Object.values(result).length
         this.result = Object.values(result).slice(0,5)
         this.searching = false
+        this.isOpen = true
         },
         ()=>(this.searchFailed = true),
         ()=>(this.searchFailed = false));
 }
   
   handleFocusOut() {
-    setTimeout(()=>this.result=[],200)
+    this.isOpen = false
+    setTimeout(()=>{()=>this.result=[]},2000)
   }
   getBreweryDetails(id) {
     this.router.navigate([`/breweries/${id}`])
   }
-  onSubmit() {}
+  handleSubmit(e) {
+    this.isOpen = false
+    this.router.navigate([`/search/${this.searchString}`])
+  }
 
   
 }

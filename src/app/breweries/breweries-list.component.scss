@@ -9,3 +9,45 @@ h1 {
   color:var(--alt1-text-color);
   text-align: center;
 }
+
+.results {
+  position: relative;
+  margin-top: 20px;
+}
+
+.noresults {
+  margin-top:20px;
+}
+
+.pagination {
+  position: absolute;
+  right: 5px;
+  top:  -10px;
+}
+
+.pagination div {
+  display: inline-block;
+  background-color: var(--tertiary-color);
+  text-align: center;
+  padding: 0 3px;
+}
+.pagination div.page_control:hover {
+  color: var(--tertiary-color);
+  background-color: var(--secondary-color);
+  cursor: pointer;
+}
+.page_control.back {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  margin-right: 2px;
+  width: 15px;
+}
+.page_control.forward {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  margin-left: 2px;
+  width: 15px;
+}
+.page_current {
+  width: 30px;
+}
