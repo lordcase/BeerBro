@@ -7,7 +7,7 @@ import {ActivatedRoute, Router, NavigationEnd} from '@angular/router'
 @Component({
   template: `
     <div>
-      <h1>Search results for: "{{search}}"</h1>
+      <h1>Search results for: "{{search}}" ({{result_count}})</h1>
       <hr>
       <div class="results">
         <div class="container">
@@ -31,6 +31,7 @@ export class BreweriesSearchComponent implements OnInit {
   search : string = ''
   navigationSubscription
   noresults = false
+  result_count: number = 0
 
   constructor(private breweryService:BreweryService, private route:ActivatedRoute, private router:Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -54,6 +55,7 @@ export class BreweriesSearchComponent implements OnInit {
     .subscribe((result)=>{
       this.breweries = result
       this.noresults = Object.values(result).length === 0
+      this.result_count = Object.values(result).length
     })
   }
 
