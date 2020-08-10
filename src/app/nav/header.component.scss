@@ -87,10 +87,21 @@ nav li:hover {
     display: none;
   }
 }
+
+
 @media all and (max-width: 410px) {
   .search {
-    margin-right: 12px;
+    width: 180px;
   }
+  input[type=text] {
+    width: 170px;
+  }
+  .spinner {
+    left: 165px;
+  }
+}
+
+@media all and (max-width: 370px) {
   .nav_fav {
     display: none;
   }
