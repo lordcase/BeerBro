@@ -19,8 +19,9 @@ import { SearchComponent } from './search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { appState} from './state/appstate.reducer'
-
+import { appState } from './state/appstate.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,6 @@ import { appState} from './state/appstate.reducer'
     HeaderComponent,
     FooterComponent,
     SearchComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -42,12 +42,13 @@ import { appState} from './state/appstate.reducer'
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({appState}, {}),
+    StoreModule.forRoot({ appState }, {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
-  providers: [
-    BreweryRouteActivator,
-    BreweriesListResolver
-  ],
-  bootstrap: [AppComponent]
+  providers: [BreweryRouteActivator, BreweriesListResolver],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -10,15 +10,15 @@
   padding: 10px 30px 10px 10px;
   background-color: var(--tertiary-color);
   border-radius: 10px;
-  transition: all .4s ease-in-out;
-  -webkit-box-shadow: 12px 9px 5px 0px rgba(0,0,0,0.47);
-  -moz-box-shadow: 12px 9px 5px 0px rgba(63,81,181,0.47);
-  box-shadow: 12px 9px 5px 0px rgba(0,0,0,0.47);
+  transition: all 0.4s ease-in-out;
+  -webkit-box-shadow: 12px 9px 5px 0px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 12px 9px 5px 0px rgba(63, 81, 181, 0.47);
+  box-shadow: 12px 9px 5px 0px rgba(0, 0, 0, 0.47);
 }
 .item-content:hover {
-  -webkit-box-shadow: 8px 6px 5px 0px rgba(0,0,0,0.47);
-  -moz-box-shadow: 8px 6px 5px 0px rgba(0,0,0,0.47);
-  box-shadow: 8px 6px 5px 0px rgba(0,0,0,0.47);
+  -webkit-box-shadow: 8px 6px 5px 0px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 8px 6px 5px 0px rgba(0, 0, 0, 0.47);
+  box-shadow: 8px 6px 5px 0px rgba(0, 0, 0, 0.47);
   cursor: pointer;
 }
 .item-content:hover h3 {
@@ -41,8 +41,8 @@
 
 .icons i,
 .icons svg {
-   color: var(--alt2-text-color);
-   width: 25px;
+  color: var(--alt2-text-color);
+  width: 25px;
 }
 .fav_icon {
   background-color: white;

@@ -3,14 +3,13 @@ header {
   background-color: var(--header-color);
   padding: 4px;
   color: var(--alt2-text-color);
-
 }
 .logo {
   float: left;
   width: 152px;
   margin-left: 6px;
 }
-.logo img { 
+.logo img {
   width: 52px;
   float: left;
 }
@@ -29,9 +28,9 @@ nav ul {
   margin: 13px 0 6px 40px;
   padding: 0;
   float: left;
-  
 }
-nav a, nav li {
+nav a,
+nav li {
   color: var(--alt1-text-color);
 }
 nav li {
@@ -39,7 +38,7 @@ nav li {
   padding: 6px 10px 7px;
   margin-left: 10px;
   background-color: var(--menu-bg-color);
-  transition: background-color .4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
   border-radius: 5px;
 }
 nav li:hover {
@@ -55,11 +54,10 @@ nav li:hover {
 }
 
 @media all and (max-width: 685px) {
-
   nav li {
     display: inline-block;
     padding: 6px 15px 7px;
-     }
+  }
   .nav_text {
     display: none;
   }
@@ -88,12 +86,11 @@ nav li:hover {
   }
 }
 
-
 @media all and (max-width: 410px) {
   .search {
     width: 180px;
   }
-  input[type=text] {
+  input[type="text"] {
     width: 170px;
   }
   .spinner {
@@ -105,5 +102,4 @@ nav li:hover {
   .nav_fav {
     display: none;
   }
-
 }

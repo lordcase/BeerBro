@@ -8,10 +8,10 @@
   padding: 25px;
   background-color: var(--tertiary-color);
   border-radius: 10px;
-  transition: all .4s ease-in-out;
-  -webkit-box-shadow: 12px 9px 5px 0px rgba(0,0,0,0.47);
-  -moz-box-shadow: 12px 9px 5px 0px rgba(0,0,0,0.47);
-  box-shadow: 12px 9px 5px 0px rgba(0,0,0,0.47);
+  transition: all 0.4s ease-in-out;
+  -webkit-box-shadow: 12px 9px 5px 0px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: 12px 9px 5px 0px rgba(0, 0, 0, 0.47);
+  box-shadow: 12px 9px 5px 0px rgba(0, 0, 0, 0.47);
 }
 
 h1 {
@@ -36,8 +36,8 @@ h1 {
 
 .icons i,
 .icons svg {
-   color: var(--alt2-text-color);
-   width: 25px;
+  color: var(--alt2-text-color);
+  width: 25px;
 }
 .fav_icon {
   background-color: white;
@@ -45,7 +45,6 @@ h1 {
 .fav_icon.faved {
   background-color: gold;
 }
-
 
 a {
   color: var(--primary-color);
@@ -86,5 +85,4 @@ a {
   .data {
     margin-bottom: 15px;
   }
-
 }

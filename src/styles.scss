@@ -1,5 +1,5 @@
 /* Global css  */
-@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap");
 
 :root {
   --primary-color: #d45400;
@@ -18,15 +18,20 @@ body.custom {
   background-color: var(--primary-color);
   // font-family: 'Open Sans', sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .img-responsive {
   display: block;
   max-width: 100%;
   height: auto;
-  max-height: 100%;;
+  max-height: 100%;
 }
 
 .main {
@@ -40,21 +45,22 @@ hr {
 }
 .mat-typography div,
 .mat-typography p {
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
 }
 .mat-typography h1 {
   font-size: 24px;
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
 }
 .mat-typography h2 {
   font-size: 22px;
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
 }
 .mat-typography h3 {
   font-size: 20px;
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
 }
 
-*.focus, *.active {
-    outline: none !important;
+*.focus,
+*.active {
+  outline: none !important;
 }

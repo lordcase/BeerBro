@@ -9,9 +9,13 @@ import { Component } from '@angular/core';
     </section>
     <footer-bar></footer-bar>
   `,
-  styles: [`
-    section.main {padding: 20px 20px 40px;}
-  `]
+  styles: [
+    `
+      section.main {
+        padding: 20px 20px 40px;
+      }
+    `,
+  ],
 })
 export class AppComponent {
   title = 'BeerBro';

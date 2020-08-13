@@ -1,11 +1,29 @@
 <header>
-  <div class="logo" ><img [routerLink]="['/breweries']" class="img-responsive" src="assets/logo_brewnicorn.png" alt="Brewery logo"><div class="logo_typeface"><span class="primary_color">B</span>EER<span class="primary_color">B</span>RO</div></div>
+  <div class="logo">
+    <img
+      [routerLink]="['/breweries']"
+      class="img-responsive"
+      src="assets/logo_brewnicorn.png"
+      alt="Brewery logo"
+    />
+    <div class="logo_typeface">
+      <span class="primary_color">B</span>EER<span class="primary_color">B</span
+      >RO
+    </div>
+  </div>
   <div class="search"><brew-search></brew-search></div>
   <nav>
     <ul>
-      <a [routerLink]="['/breweries']" class="nav_home"><li><span class="nav_text">Breweries</span><span class="nav_icon"><i class="fas fa-home"></i></span></li></a>
-      <a [routerLink]="['/favourites']" class="nav_fav"><li><span class="nav_text">Favourites</span><span class="nav_icon"><i class="fas fa-star"></i></span></li></a>
+      <a [routerLink]="['/breweries']" class="nav_home"
+        ><li>
+          <span class="nav_text">Breweries</span
+          ><span class="nav_icon"><i class="fas fa-home"></i></span></li
+      ></a>
+      <a [routerLink]="['/favourites']" class="nav_fav"
+        ><li>
+          <span class="nav_text">Favourites</span
+          ><span class="nav_icon"><i class="fas fa-star"></i></span></li
+      ></a>
     </ul>
   </nav>
-  
 </header>

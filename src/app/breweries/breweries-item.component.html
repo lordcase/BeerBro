@@ -1,6 +1,9 @@
 <div class="item-content" [routerLink]="['/breweries', brewery.id]">
-  <div class="favourite" (click)="handleFavouritization($event)"><i class="far fa-star" *ngIf="!isfaved"></i><i class="fas fa-star" *ngIf="isfaved"></i></div>
-  <h3 class="name">{{brewery.name}}</h3>
-  <hr>
-  <div class="data">{{brewery.city}}<br>{{brewery.country}}</div>
+  <div class="favourite" (click)="handleFavouritization($event)">
+    <i class="far fa-star" *ngIf="!isfaved"></i
+    ><i class="fas fa-star" *ngIf="isfaved"></i>
+  </div>
+  <h3 class="name">{{ brewery.name }}</h3>
+  <hr />
+  <div class="data">{{ brewery.city }}<br />{{ brewery.country }}</div>
 </div>
