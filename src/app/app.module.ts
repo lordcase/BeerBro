@@ -42,8 +42,9 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ appState }, {}),
+    StoreModule.forRoot({ appState: appState }, {}),
     StoreDevtoolsModule.instrument({
+      name: 'BrewBro Devtools',
       maxAge: 25,
       logOnly: environment.production,
     }),

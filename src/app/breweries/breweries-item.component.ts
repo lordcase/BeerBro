@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { toggleFavorites } from 'app/state/appstate.actions';
+import { AppState, getFavourites } from 'app/state/appstate.reducer';
 
 @Component({
   selector: 'breweries-item',
@@ -15,13 +16,10 @@ export class BreweriesItemComponent implements OnInit {
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.store.pipe(select('appState')).subscribe((appState) => {
-      this.favArray = Object.values(appState.favourites).map(
-        (value) => value['id']
-      );
-      console.log('nyerf', this.favArray);
+    this.store.select(getFavourites).subscribe((appState) => {
+      console.log('as', appState);
+      // this.favArray = Object.values(appState).map((value) => value['id']);
       if (this.brewery) {
-        console.log('nyorf', this.brewery.id);
         this.isfaved = this.favArray.includes(this.brewery.id);
       }
     });
