@@ -1,55 +1,50 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { Error404Component } from './errors/error-404.component';
-import { BreweriesListComponent } from './breweries/breweries-list.component';
-import { BreweriesSearchComponent } from './breweries/breweries-search.component';
-import { BreweriesFavouritesComponent } from './breweries/breweries-favourites.component';
-import { BreweriesItemComponent } from './breweries/breweries-item.component';
-import { BreweryDetailComponent } from './breweries/brewery-detail/brewery-detail.component';
-import { BreweryRouteActivator } from './breweries/brewery-detail/brewery-route-activator.service';
-import { BreweriesListResolver } from './breweries/breweries-list-resolver.service';
-import { HeaderComponent } from './nav/header.component';
-import { FooterComponent } from './nav/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SearchComponent } from './search/search.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+/* NgRx */
 import { StoreModule } from '@ngrx/store';
-import { appState } from './state/appstate.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './nav/header.component';
+import { FooterComponent } from './nav/footer.component';
+import { SearchComponent } from './search/search.component';
+import { HttpClientModule } from '@angular/common/http';
+import { Error404Component } from './errors/error-404.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { BreweriesModule } from './breweries/breweries.module';
+import { EffectsModule } from '@ngrx/effects';
+
+// import { appState } from './state/appstate.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
     Error404Component,
-    BreweriesListComponent,
-    BreweriesSearchComponent,
-    BreweriesFavouritesComponent,
-    BreweriesItemComponent,
-    BreweryDetailComponent,
     HeaderComponent,
     FooterComponent,
     SearchComponent,
   ],
   imports: [
+    BreweriesModule,
     BrowserModule,
-    AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ appState: appState }, {}),
+    StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({
       name: 'BrewBro Devtools',
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([]),
   ],
-  providers: [BreweryRouteActivator, BreweriesListResolver],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

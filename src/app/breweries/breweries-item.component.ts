@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { toggleFavorites } from 'app/state/appstate.actions';
-import { AppState, getFavourites } from 'app/state/appstate.reducer';
+import { toggleFavorites } from 'app/breweries/state/breweries.actions';
+import { State, getFavourites } from 'app/breweries/state/breweries.reducer';
 
 @Component({
   selector: 'breweries-item',
@@ -13,12 +13,11 @@ export class BreweriesItemComponent implements OnInit {
   isfaved: boolean = false;
   favArray: Array<any>;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.store.select(getFavourites).subscribe((appState) => {
-      console.log('as', appState);
-      // this.favArray = Object.values(appState).map((value) => value['id']);
+    this.store.select(getFavourites).subscribe((favourites) => {
+      this.favArray = Object.values(favourites).map((value) => value['id']);
       if (this.brewery) {
         this.isfaved = this.favArray.includes(this.brewery.id);
       }

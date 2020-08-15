@@ -10,21 +10,7 @@ import { BreweryRouteActivator } from './breweries/brewery-detail/brewery-route-
 import { BreweriesListResolver } from './breweries/breweries-list-resolver.service';
 
 export const routes: Routes = [
-  {
-    path: 'breweries',
-    component: BreweriesListComponent,
-    resolve: { breweries: BreweriesListResolver },
-  },
-  {
-    path: 'breweries/:id',
-    component: BreweryDetailComponent,
-    canActivate: [BreweryRouteActivator],
-    runGuardsAndResolvers: 'always',
-  },
-  { path: 'favourites', component: BreweriesFavouritesComponent },
-  { path: 'search/:search', component: BreweriesSearchComponent },
   { path: '404', component: Error404Component },
-  { path: '', redirectTo: '/breweries', pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
 ];
 

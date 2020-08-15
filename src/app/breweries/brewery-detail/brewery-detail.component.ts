@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreweryService } from '../shared/brewery.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { toggleFavorites } from 'app/state/appstate.actions';
-import { HttpClientJsonpModule } from '@angular/common/http';
+import { toggleFavorites } from 'app/breweries/state/breweries.actions';
+import { State, getFavourites } from 'app/breweries/state/breweries.reducer';
 
 @Component({
   templateUrl: './brewery-detail.component.html',
@@ -19,7 +19,7 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
     private breweryService: BreweryService,
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<any>
+    private store: Store<State>
   ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -27,10 +27,8 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
         this.initialiseInvites();
       }
     });
-    this.store.pipe(select('appState')).subscribe((appState) => {
-      this.favArray = Object.values(appState.favourites).map(
-        (value) => value['id']
-      );
+    this.store.pipe(select(getFavourites)).subscribe((favourites) => {
+      this.favArray = Object.values(favourites).map((value) => value['id']);
       if (this.brewery) {
         this.isfaved = this.favArray.includes(this.brewery.id);
       }

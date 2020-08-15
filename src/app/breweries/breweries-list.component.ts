@@ -1,8 +1,18 @@
-import { Component, OnInit, ValueSansProvider } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreweryService } from './shared/brewery.service';
-import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import {
+  loadBreweriesPage,
+  saveCurrentPage,
+  hello,
+} from 'app/breweries/state/breweries.actions';
+import {
+  getCurrentPage,
+  Brewery,
+  getBreweriesPage,
+} from './state/breweries.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   template: `
@@ -22,7 +32,7 @@ import { map } from 'rxjs/operators';
           <div class="page_control forward" (click)="handlePageUp()">&gt;</div>
         </div>
         <div class="container">
-          <div class="item" *ngFor="let brewery of breweries">
+          <div class="item" *ngFor="let brewery of breweries$ | async">
             <breweries-item [brewery]="brewery"></breweries-item>
           </div>
         </div>
@@ -32,38 +42,30 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./breweries-list.component.scss'],
 })
 export class BreweriesListComponent implements OnInit {
-  breweries: any;
+  // breweries: any;
   current_page: number = 1;
-
+  breweries$: Observable<Brewery[]> = this.store.select(getBreweriesPage);
   constructor(
     private breweryService: BreweryService,
     private route: ActivatedRoute,
-    private store: Store<any>
+    private store: Store
   ) {}
   isFirst = () => this.current_page > 1;
 
   ngOnInit(): void {
-    this.breweries = this.route.snapshot.data['breweries'];
+    this.store.select(getCurrentPage).subscribe((page) => {
+      this.current_page = page;
+      this.store.dispatch(loadBreweriesPage({ page }));
+    });
   }
 
   handlePageUp() {
-    this.current_page++;
-    this.refreshResults();
+    this.store.dispatch(saveCurrentPage({ page: this.current_page + 1 }));
   }
 
   handlePageDown() {
     if (this.current_page > 1) {
-      this.current_page--;
-      this.refreshResults();
+      this.store.dispatch(saveCurrentPage({ page: this.current_page - 1 }));
     }
-  }
-
-  refreshResults() {
-    this.breweryService
-      .getBreweries(this.current_page)
-      .subscribe((breweries) => {
-        console.log(breweries);
-        this.breweries = breweries;
-      });
   }
 }

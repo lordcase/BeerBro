@@ -2,6 +2,7 @@ import { Component, OnInit, ValueSansProvider } from '@angular/core';
 import { BreweryService } from './shared/brewery.service';
 import { Store, select } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
+import { State, getFavourites } from './state/breweries.reducer';
 
 @Component({
   template: `
@@ -23,10 +24,10 @@ import { ActivatedRoute } from '@angular/router';
 export class BreweriesFavouritesComponent implements OnInit {
   breweries: {};
   noresults: boolean = true;
-  constructor(private store: Store<any>) {
-    this.store.pipe(select('appState')).subscribe((appState) => {
-      this.breweries = Object.values(appState.favourites);
-      this.noresults = Object.values(appState.favourites).length == 0;
+  constructor(private store: Store<State>) {
+    this.store.pipe(select(getFavourites)).subscribe((favourites) => {
+      this.breweries = Object.values(favourites);
+      this.noresults = Object.values(favourites).length == 0;
     });
   }
 

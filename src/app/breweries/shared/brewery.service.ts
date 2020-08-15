@@ -13,6 +13,7 @@ export class BreweryService {
 
   getBreweries(page: number = 1) {
     const PARAMS = new HttpParams();
+    console.log('erg');
     return this.http
       .get(API_URL, {
         params: PARAMS.set('per_page', '5').set('page', '' + page),
