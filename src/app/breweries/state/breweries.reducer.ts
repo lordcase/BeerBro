@@ -15,17 +15,31 @@ export interface State extends AppState.State {
 export interface Brewery {
   id: number;
   name: string;
+  brewery_type?: string;
+  street?: string;
+  city?: string;
+  state?: string;
+  postal_code?: string;
+  country?: string;
+  longitude?: string;
+  latitude?: string;
+  phone?: string;
+  website_url?: string;
+  updated_at?: string;
 }
 
 export interface BreweriesState {
   favourites: Brewery[];
   breweriesPage: Brewery[];
   currentPage: number;
+  currentBrewery?: Brewery;
+  error: string;
 }
 export const initialState: BreweriesState = {
   favourites: [],
   breweriesPage: [],
   currentPage: 1,
+  error: '',
 };
 
 const getBreweriesFeatureState = createFeatureSelector<BreweriesState>(
@@ -36,6 +50,10 @@ export const getCurrentPage = createSelector(
   getBreweriesFeatureState,
   (state) => state.currentPage
 );
+export const getError = createSelector(
+  getBreweriesFeatureState,
+  (state) => state.error
+);
 export const getFavourites = createSelector(
   getBreweriesFeatureState,
   (state) => state.favourites
@@ -44,6 +62,10 @@ export const getFavourites = createSelector(
 export const getBreweriesPage = createSelector(
   getBreweriesFeatureState,
   (state) => state.breweriesPage
+);
+export const getCurrentBrewery = createSelector(
+  getBreweriesFeatureState,
+  (state) => state.currentBrewery
 );
 
 const _BreweriesReducer = createReducer<BreweriesState>(
@@ -64,9 +86,12 @@ const _BreweriesReducer = createReducer<BreweriesState>(
     }
   ),
   on(
+    BreweriesActions.saveCurrentPage,
+    (state, action): BreweriesState => ({ ...state, currentPage: action.page })
+  ),
+  on(
     BreweriesActions.loadBreweriesPageSuccess,
     (state, action): BreweriesState => {
-      console.log('au', action);
       return {
         ...state,
         breweriesPage: action.breweriesPage,
@@ -74,8 +99,33 @@ const _BreweriesReducer = createReducer<BreweriesState>(
     }
   ),
   on(
-    BreweriesActions.saveCurrentPage,
-    (state, action): BreweriesState => ({ ...state, currentPage: action.page })
+    BreweriesActions.loadBreweriesPageFailure,
+    (state, action): BreweriesState => {
+      return {
+        ...state,
+        breweriesPage: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    BreweriesActions.loadBrewerySuccess,
+    (state, action): BreweriesState => {
+      return {
+        ...state,
+        currentBrewery: action.brewery,
+      };
+    }
+  ),
+  on(
+    BreweriesActions.loadBreweryFailure,
+    (state, action): BreweriesState => {
+      return {
+        ...state,
+        breweriesPage: [],
+        error: action.error,
+      };
+    }
   )
 );
 

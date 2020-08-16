@@ -1,7 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { toggleFavorites } from 'app/breweries/state/breweries.actions';
-import { State, getFavourites } from 'app/breweries/state/breweries.reducer';
+import {
+  toggleFavorites,
+  loadBrewery,
+} from 'app/breweries/state/breweries.actions';
+import {
+  State,
+  getFavourites,
+  Brewery,
+} from 'app/breweries/state/breweries.reducer';
 
 @Component({
   selector: 'breweries-item',
@@ -9,7 +16,7 @@ import { State, getFavourites } from 'app/breweries/state/breweries.reducer';
   styleUrls: ['./breweries-item.component.scss'],
 })
 export class BreweriesItemComponent implements OnInit {
-  @Input() brewery: any;
+  @Input() brewery: Brewery;
   isfaved: boolean = false;
   favArray: Array<any>;
 

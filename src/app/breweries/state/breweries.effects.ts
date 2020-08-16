@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { mergeMap, map, tap, catchError } from 'rxjs/operators';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import { BreweryService } from '../shared/brewery.service';
 
 /* NgRx */
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as BreweriesActions from './breweries.actions';
+import { of } from 'rxjs';
 
 @Injectable()
 export class BreweriesEffects {
@@ -21,6 +22,23 @@ export class BreweriesEffects {
           map((breweries) =>
             BreweriesActions.loadBreweriesPageSuccess({
               breweriesPage: breweries,
+            })
+          ),
+          catchError((error) =>
+            of(BreweriesActions.loadBreweriesPageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  loadBrewery$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(BreweriesActions.loadBrewery),
+      mergeMap((action) =>
+        this.breweryService.getBrewery(+action.id).pipe(
+          map((brewery) =>
+            BreweriesActions.loadBrewerySuccess({
+              brewery,
             })
           )
         )

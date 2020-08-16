@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import {
   loadBreweriesPage,
   saveCurrentPage,
-  hello,
 } from 'app/breweries/state/breweries.actions';
 import {
   getCurrentPage,

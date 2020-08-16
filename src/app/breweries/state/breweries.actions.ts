@@ -15,7 +15,6 @@ export const loadBreweriesPage = createAction(
   '[Breweries] Load breweries page',
   props<{ page: number }>()
 );
-export const hello = createAction('[Breweries] hello');
 
 export const loadBreweriesPageSuccess = createAction(
   '[Breweries] Load breweries page success',
@@ -23,6 +22,21 @@ export const loadBreweriesPageSuccess = createAction(
 );
 
 export const loadBreweriesPageFailure = createAction(
+  '[Breweries] Load breweries page failure',
+  props<{ error: string }>()
+);
+
+export const loadBrewery = createAction(
+  '[Breweries] Load breweries page',
+  props<{ id: string }>()
+);
+
+export const loadBrewerySuccess = createAction(
+  '[Breweries] Load breweries page success',
+  props<{ brewery: Brewery }>()
+);
+
+export const loadBreweryFailure = createAction(
   '[Breweries] Load breweries page failure',
   props<{ error: string }>()
 );

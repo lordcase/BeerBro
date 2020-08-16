@@ -3,17 +3,24 @@ import { BreweryService } from '../shared/brewery.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { toggleFavorites } from 'app/breweries/state/breweries.actions';
-import { State, getFavourites } from 'app/breweries/state/breweries.reducer';
+import {
+  State,
+  getFavourites,
+  Brewery,
+  getCurrentBrewery,
+} from 'app/breweries/state/breweries.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './brewery-detail.component.html',
   styleUrls: ['./brewery-detail.component.scss'],
 })
-export class BreweryDetailComponent implements OnInit, OnDestroy {
+export class BreweryDetailComponent implements OnInit {
   brewery: any;
   navigationSubscription;
   isfaved: boolean = false;
   favArray: Array<any>;
+  brewery$: Observable<Brewery> = this.store.select(getCurrentBrewery);
 
   constructor(
     private breweryService: BreweryService,
@@ -21,12 +28,6 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private store: Store<State>
   ) {
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.initialiseInvites();
-      }
-    });
     this.store.pipe(select(getFavourites)).subscribe((favourites) => {
       this.favArray = Object.values(favourites).map((value) => value['id']);
       if (this.brewery) {
@@ -36,21 +37,6 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {}
-
-  initialiseInvites() {
-    this.breweryService
-      .getBrewery(+this.route.snapshot.paramMap.get('id'))
-      .subscribe((result) => {
-        this.brewery = result;
-        this.isfaved = this.favArray.includes(this.brewery.id);
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
-  }
 
   handleFavouritization(event): void {
     event.stopImmediatePropagation();
