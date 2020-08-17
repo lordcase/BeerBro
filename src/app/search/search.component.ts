@@ -19,7 +19,7 @@ import {
 import * as SearchActions from './state/search.actions';
 
 @Component({
-  or: 'brew-search',
+  selector: 'brew-search',
   templateUrl: './search.component.html',
   providers: [BreweryService],
   styleUrls: ['./search.component.scss'],
