@@ -11,10 +11,12 @@ import {
   debounceTime,
   distinctUntilChanged,
   tap,
+  switchMap,
 } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { getCurrentBrewery } from '../state/breweries.reducer';
 import { loadBrewery } from '../state/breweries.actions';
+import { of } from 'rxjs';
 
 @Injectable()
 export class BreweryRouteActivator implements CanActivate {
@@ -26,15 +28,10 @@ export class BreweryRouteActivator implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot) {
     this.store.dispatch(loadBrewery({ id: route.paramMap.get('id') }));
-    return true;
+    console.log('mutt');
+    return this.store.select(getCurrentBrewery).pipe(
+      switchMap(() => of(true)),
+      catchError(() => of(false))
+    );
   }
-  //   this.breweryService
-  //     .getBrewery(+route.paramMap.get('id'))
-  //     .subscribe((result) => {
-  //       if (!!result === false) {
-  //         this.router.navigate(['/404']);
-  //       }
-  //     });
-  //   return true;
-  // }
 }

@@ -1,6 +1,6 @@
-<div class="item-content">
+<div class="item-content" *ngIf="brewery$ | async as brewery">
   <h1>{{ brewery?.name }}</h1>
-  <div class="favourite" (click)="handleFavouritization($event)">
+  <div class="favourite" (click)="handleFavouritization($event, brewery)">
     <i class="far fa-star" *ngIf="!isfaved"></i
     ><i class="fas fa-star" *ngIf="isfaved"></i>
   </div>
@@ -9,7 +9,7 @@
     <div class="term">Website:</div>
     <div class="data">
       <a
-        href="{{ brewery?.website_url }}"
+        href="{{ brewery.website_url }}"
         target="_blank"
         rel="noopener noreferrer"
         >{{ brewery?.website_url }}</a

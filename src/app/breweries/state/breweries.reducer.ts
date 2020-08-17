@@ -67,7 +67,19 @@ export const getCurrentBrewery = createSelector(
   getBreweriesFeatureState,
   (state) => state.currentBrewery
 );
-
+// export const getFavouriteness = createSelector(
+//   getBreweriesFeatureState,
+//   (state) => {
+//     console.log('hopp');
+//     return (
+//       state.currentBrewery &&
+//       state.currentBrewery.id &&
+//       Object.values(state.favourites)
+//         .map((value) => value['id'])
+//         .includes(state.currentBrewery.id)
+//     );
+//   }
+// );
 const _BreweriesReducer = createReducer<BreweriesState>(
   initialState,
   on(
