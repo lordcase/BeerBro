@@ -27,7 +27,7 @@ const breweriesRoutes: Routes = [
     path: 'breweries/:id',
     component: BreweryDetailComponent,
     canActivate: [BreweryRouteActivator],
-    runGuardsAndResolvers: 'always',
+    // runGuardsAndResolvers: 'always',
   },
   { path: 'favourites', component: BreweriesFavouritesComponent },
   { path: 'search/:search', component: BreweriesSearchComponent },

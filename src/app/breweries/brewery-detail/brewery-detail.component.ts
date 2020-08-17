@@ -31,6 +31,7 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private store: Store<State>
   ) {
+    console.log('Brewery detail constructor');
     this.sub = this.store.select(getFavourites).subscribe((favourites) => {
       this.favArray = Object.values(favourites).map((value) => value['id']);
       if (this.breweryId) {
@@ -43,10 +44,13 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
     this.brewery$ = this.store.select(getCurrentBrewery);
     // this.brewery$.subscribe((brew) => (this.breweryId = brew.id));
     this.sub2 = this.brewery$.subscribe((currentBrewery) => {
-      console.log('curr', currentBrewery);
+      console.log('Brewery detail OnInit, current brewery:', currentBrewery);
       if (currentBrewery) {
         this.breweryId = currentBrewery.id;
-        console.log('curr2', currentBrewery.id);
+        console.log(
+          'Brewery detail OnInit sub, current brewery id:',
+          currentBrewery.id
+        );
         this.isfaved = this.favArray.includes(currentBrewery.id);
       } else {
         this.breweryId = 0;
@@ -57,7 +61,6 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
   handleFavouritization(event, brewery): void {
     event.stopImmediatePropagation();
     this.store.dispatch(toggleFavorites({ brewery: brewery }));
-    console.log('brr', brewery);
   }
 
   ngOnDestroy() {

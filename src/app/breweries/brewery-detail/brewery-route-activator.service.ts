@@ -28,7 +28,7 @@ export class BreweryRouteActivator implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot) {
     this.store.dispatch(loadBrewery({ id: route.paramMap.get('id') }));
-    console.log('mutt');
+    console.log('brewery detail route activator - canactivate fired');
     return this.store.select(getCurrentBrewery).pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))

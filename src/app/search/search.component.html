@@ -10,11 +10,13 @@
     <div *ngIf="searching" class="spinner">
       <img src="assets/Spinner-0.5s-15px.gif" />
     </div>
-    <div *ngIf="!searching" class="spinner count">{{ result_count }}</div>
+    <div *ngIf="!searching" class="spinner count">
+      {{ typeaheadCount$ | async }}
+    </div>
   </form>
   <div class="predictive" [class.open]="isOpen">
-    <div *ngFor="let brewery of result" class="result">
-      <span [routerLink]="['/breweries', brewery.id]">{{ brewery.name }}</span>
+    <div *ngFor="let result of typeahead$ | async" class="result">
+      <span [routerLink]="['/breweries', result.id]">{{ result.name }}</span>
     </div>
     <div class="invalid-feedback" *ngIf="searchFailed">
       Sorry, suggestions could not be loaded.
