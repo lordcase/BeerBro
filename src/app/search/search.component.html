@@ -4,6 +4,7 @@
       formControlName="search"
       placeholder="Search Brewery..."
       type="text"
+      (focus)="handleFocusIn()"
       (focusout)="handleFocusOut()"
       [(ngModel)]="searchString"
     />

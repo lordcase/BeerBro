@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Brewery } from '../state/breweries.reducer';
 import { TypeaheadResult } from '../../search/state/search.reducer';
 
@@ -29,10 +29,11 @@ export class BreweryService {
       .pipe(map((response) => response));
   }
 
-  freeSearch(query: string) {
-    return this.http
-      .get(API_URL + `/search?query=${query}`)
-      .pipe(map((response) => response));
+  freeSearch(query: string): Observable<Brewery[]> {
+    return this.http.get<Brewery[]>(API_URL + `/search?query=${query}`).pipe(
+      tap((res) => console.log('free', res)),
+      map((response) => response)
+    );
   }
 
   search(term: string): Observable<TypeaheadResult[]> {

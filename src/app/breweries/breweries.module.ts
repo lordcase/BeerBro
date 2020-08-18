@@ -22,6 +22,7 @@ const breweriesRoutes: Routes = [
     path: 'breweries',
     component: BreweriesListComponent,
     resolve: { breweries: BreweriesListResolver },
+    pathMatch: 'full',
   },
   {
     path: 'breweries/:id',

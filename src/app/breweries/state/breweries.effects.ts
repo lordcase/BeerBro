@@ -45,4 +45,24 @@ export class BreweriesEffects {
       )
     );
   });
+  loadFreeSearchPage$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(BreweriesActions.loadFreeSearchPage),
+      mergeMap((action) =>
+        this.breweryService.freeSearch(action.searchTerm).pipe(
+          map((breweries) => {
+            BreweriesActions.setResultCount({
+              resultCount: breweries.length,
+            });
+            return BreweriesActions.loadFreeSearchPageSuccess({
+              result: breweries,
+            });
+          }),
+          catchError((error) =>
+            of(BreweriesActions.loadFreeSearchPageFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

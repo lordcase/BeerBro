@@ -20,7 +20,6 @@ export class SearchEffects {
       mergeMap((action) =>
         this.searchService.search(action.term).pipe(
           map((results) => {
-            console.log('searchLoad');
             return SearchActions.loadTypeaheadSuccess({ results });
           })
         )

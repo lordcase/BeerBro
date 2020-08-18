@@ -34,12 +34,18 @@ export interface BreweriesState {
   currentPage: number;
   currentBrewery?: Brewery;
   error: string;
+  resultCount: number;
+  searchTerm: string;
+  freeSearchPage: Brewery[];
 }
 export const initialState: BreweriesState = {
   favourites: [],
   breweriesPage: [],
   currentPage: 1,
   error: '',
+  resultCount: 0,
+  searchTerm: '',
+  freeSearchPage: [],
 };
 
 const getBreweriesFeatureState = createFeatureSelector<BreweriesState>(
@@ -67,10 +73,21 @@ export const getCurrentBrewery = createSelector(
   getBreweriesFeatureState,
   (state) => state.currentBrewery
 );
+export const getFreeSearchPage = createSelector(
+  getBreweriesFeatureState,
+  (state) => state.freeSearchPage
+);
+export const getResultCount = createSelector(
+  getBreweriesFeatureState,
+  (state) => state.resultCount
+);
+export const getSearchTerm = createSelector(
+  getBreweriesFeatureState,
+  (state) => state.searchTerm
+);
 // export const getFavouriteness = createSelector(
 //   getBreweriesFeatureState,
 //   (state) => {
-//     console.log('hopp');
 //     return (
 //       state.currentBrewery &&
 //       state.currentBrewery.id &&
@@ -135,6 +152,45 @@ const _BreweriesReducer = createReducer<BreweriesState>(
       return {
         ...state,
         breweriesPage: [],
+        error: action.error,
+      };
+    }
+  ),
+  on(
+    BreweriesActions.setResultCount,
+    (state, action): BreweriesState => {
+      return {
+        ...state,
+        resultCount: action.resultCount,
+      };
+    }
+  ),
+  on(
+    BreweriesActions.setSearchTerm,
+    (state, action): BreweriesState => {
+      return {
+        ...state,
+        searchTerm: action.searchterm,
+      };
+    }
+  ),
+  on(
+    BreweriesActions.loadFreeSearchPageSuccess,
+    (state, action): BreweriesState => {
+      console.log(action);
+      return {
+        ...state,
+        freeSearchPage: action.result,
+        resultCount: action.result.length,
+      };
+    }
+  ),
+  on(
+    BreweriesActions.loadFreeSearchPageFailure,
+    (state, action): BreweriesState => {
+      return {
+        ...state,
+        freeSearchPage: [],
         error: action.error,
       };
     }

@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  tap,
-  switchMap,
-} from 'rxjs/operators';
 import { BreweryService } from '../breweries/shared/brewery.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -17,6 +10,7 @@ import {
   getTypeaheadResultsCount,
 } from './state/search.reducer';
 import * as SearchActions from './state/search.actions';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'brew-search',
@@ -34,7 +28,7 @@ export class SearchComponent implements OnInit {
   searchGroup: FormGroup;
   typeahead$: Observable<TypeaheadResult[]>;
   typeaheadCount$: Observable<number>;
-  searching: boolean = false;
+  searching: boolean;
   isOpen: boolean = false;
   searchString: string;
 
@@ -46,29 +40,35 @@ export class SearchComponent implements OnInit {
   ) {
     this.searchField = new FormControl();
     this.searchGroup = fb.group({ search: this.searchField });
-
-    this.searchField.valueChanges.pipe(
-      tap(() => {
-        this.searching = true;
-        this.isOpen = false;
-        console.log('tippiti');
-      }),
-      debounceTime(400),
-      tap((search) => this.store.dispatch(search))
-      // switchMap((term) => this.searchService.search(term))
-    );
   }
 
   ngOnInit() {
     this.typeahead$ = this.store.select(getTypeaheadResults);
     this.typeaheadCount$ = this.store.select(getTypeaheadResultsCount);
+    this.store.select(getTypeaheadResults).subscribe((results) => {
+      this.isOpen = true;
+      this.searching = false;
+    });
+    this.searchField.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((search) => {
+        if (search && search.length > 0) {
+          this.searching = true;
+          this.isOpen = false;
+          this.store.dispatch(SearchActions.loadTypeahead({ term: search }));
+        }
+      });
+    this.searching = false;
   }
 
+  handleFocusIn() {
+    this.isOpen = true;
+  }
   handleFocusOut() {
     this.isOpen = false;
-    setTimeout(() => {
-      () => this.store.dispatch(SearchActions.clearTypeahead());
-    }, 2000);
+    // setTimeout(() => {
+    //   () => this.store.dispatch(SearchActions.clearTypeahead());
+    // }, 2000);
   }
   getBreweryDetails(id) {
     this.router.navigate([`/breweries/${id}`]);

@@ -40,3 +40,24 @@ export const loadBreweryFailure = createAction(
   '[Breweries] Load breweries page failure',
   props<{ error: string }>()
 );
+export const setSearchTerm = createAction(
+  '[Breweries] Set actual search term',
+  props<{ searchterm: string }>()
+);
+export const setResultCount = createAction(
+  '[Breweries] Set actual result count',
+  props<{ resultCount: number }>()
+);
+export const loadFreeSearchPage = createAction(
+  '[Breweries] Load Free Search page',
+  props<{ searchTerm: string }>()
+);
+export const loadFreeSearchPageSuccess = createAction(
+  '[Breweries] Load Free Search page success',
+  props<{ result: Brewery[] }>()
+);
+
+export const loadFreeSearchPageFailure = createAction(
+  '[Breweries] Load Free Search page failure',
+  props<{ error: string }>()
+);

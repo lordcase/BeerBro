@@ -10,12 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './nav/header.component';
 import { FooterComponent } from './nav/footer.component';
-import { SearchComponent } from './search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Error404Component } from './errors/error-404.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { SearchModule } from './search/search.module';
 import { BreweriesModule } from './breweries/breweries.module';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -27,9 +27,9 @@ import { EffectsModule } from '@ngrx/effects';
     Error404Component,
     HeaderComponent,
     FooterComponent,
-    SearchComponent,
   ],
   imports: [
+    SearchModule,
     BreweriesModule,
     BrowserModule,
     ReactiveFormsModule,
