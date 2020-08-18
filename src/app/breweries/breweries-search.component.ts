@@ -42,7 +42,13 @@ export class BreweriesSearchComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private store: Store
-  ) {}
+  ) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.initialiseInvites();
+      }
+    });
+  }
 
   ngOnInit() {
     this.search = this.route.snapshot.paramMap.get('search');
@@ -50,9 +56,12 @@ export class BreweriesSearchComponent implements OnInit {
     this.noresults = !this.resultCount;
     this.resultCount$ = this.store.select(getResultCount);
     this.breweries$ = this.store.select(getFreeSearchPage);
-    this.store
-      .select(getResultCount)
-      .subscribe((res) => console.log('count', res));
+    this.store.dispatch(
+      BreweriesActions.loadFreeSearchPage({ searchTerm: this.search })
+    );
+  }
+  initialiseInvites() {
+    this.search = this.route.snapshot.paramMap.get('search');
     this.store.dispatch(
       BreweriesActions.loadFreeSearchPage({ searchTerm: this.search })
     );
@@ -66,4 +75,10 @@ export class BreweriesSearchComponent implements OnInit {
   //     this.result_count = Object.values(result).length;
   //   });
   // }
+
+  ngOnDestroy() {
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
+  }
 }
