@@ -9,10 +9,12 @@ import * as fromRoot from './state/app.state';
     <header-bar></header-bar>
     <section class="main">
       <div class="spinner_div" *ngIf="loading$ | async">
-        <mat-spinner
-          class="custom_spinner"
-          aria-label="loading..."
-        ></mat-spinner>
+        <div class="spinner_inside_div" *ngIf="loading$ | async">
+          <mat-spinner
+            class="custom_spinner"
+            aria-label="loading..."
+          ></mat-spinner>
+        </div>
       </div>
       <router-outlet></router-outlet>
     </section>
@@ -25,8 +27,15 @@ import * as fromRoot from './state/app.state';
       }
       div.spinner_div {
         position: fixed;
-        right: calc(50% - 100px);
-        top: calc(50% - 80px);
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(5px);
+        z-index: 8;
+      }
+      div.spinner_inside_div {
+        position: fixed;
+        right: calc(50% - 80px);
+        top: calc(30% - 80px);
         background-color: var(--secondary-color);
         border-radius: 50%;
         padding: 30px;

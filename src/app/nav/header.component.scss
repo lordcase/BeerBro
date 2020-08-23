@@ -86,6 +86,11 @@ nav li:hover {
   }
 }
 
+.logo,
+.logo_typeface {
+  cursor: pointer;
+}
+
 @media all and (max-width: 410px) {
   .search {
     width: 180px;
