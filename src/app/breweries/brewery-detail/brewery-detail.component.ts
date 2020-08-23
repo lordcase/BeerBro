@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BreweryService } from '../shared/brewery.service';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { toggleFavorites } from 'app/breweries/state/breweries.actions';
 import {
   State,
@@ -10,7 +8,6 @@ import {
   getCurrentBrewery,
 } from 'app/breweries/state/breweries.reducer';
 import { Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
   templateUrl: './brewery-detail.component.html',
@@ -25,12 +22,7 @@ export class BreweryDetailComponent implements OnInit, OnDestroy {
   sub: Subscription;
   sub2: Subscription;
 
-  constructor(
-    private breweryService: BreweryService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private store: Store<State>
-  ) {
+  constructor(private store: Store<State>) {
     console.log('Brewery detail constructor');
     this.sub = this.store.select(getFavourites).subscribe((favourites) => {
       this.favArray = Object.values(favourites).map((value) => value['id']);

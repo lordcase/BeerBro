@@ -58,3 +58,7 @@ h3 {
 .data {
   margin-top: 10px;
 }
+
+::ng-deep simple-snack-bar span {
+  color: var(--primary-color);
+}

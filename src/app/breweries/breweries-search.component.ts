@@ -9,6 +9,7 @@ import {
   Brewery,
   getFreeSearchPage,
 } from './state/breweries.reducer';
+import { setLoadingFlagAction } from '../state/app.state';
 
 @Component({
   template: `
@@ -43,6 +44,7 @@ export class BreweriesSearchComponent implements OnInit {
     private router: Router,
     private store: Store
   ) {
+    this.store.dispatch(setLoadingFlagAction({ flag: true }));
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.initialiseInvites();

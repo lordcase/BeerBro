@@ -10,6 +10,7 @@ import {
   Brewery,
 } from 'app/breweries/state/breweries.reducer';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'breweries-item',
@@ -22,7 +23,7 @@ export class BreweriesItemComponent implements OnInit, OnDestroy {
   favArray: Array<any>;
   sub: Subscription;
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<State>, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.sub = this.store.select(getFavourites).subscribe((favourites) => {
@@ -36,9 +37,19 @@ export class BreweriesItemComponent implements OnInit, OnDestroy {
   handleFavouritization(event): void {
     event.stopImmediatePropagation();
     this.store.dispatch(toggleFavorites({ brewery: this.brewery }));
+    this.openSnackBar(this.brewery.name, this.isfaved);
   }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  openSnackBar(brewery: string, removing: boolean) {
+    const text = removing ? 'added to' : 'removed from';
+    this._snackBar.open(`${brewery} ${text} favourites!`, '', {
+      duration: 1500,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
   }
 }

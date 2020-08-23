@@ -27,12 +27,12 @@ export const loadBreweriesPageFailure = createAction(
 );
 
 export const loadBrewery = createAction(
-  '[Breweries] Load breweries page',
+  '[Breweries] Load brewery',
   props<{ id: string }>()
 );
 
 export const loadBrewerySuccess = createAction(
-  '[Breweries] Load breweries page success',
+  '[Breweries] Load brewery success',
   props<{ brewery: Brewery }>()
 );
 

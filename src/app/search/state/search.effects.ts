@@ -5,7 +5,6 @@ import { BreweryService } from '../../breweries/shared/brewery.service';
 /* NgRx */
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as SearchActions from './search.actions';
-import { of } from 'rxjs';
 
 @Injectable()
 export class SearchEffects {

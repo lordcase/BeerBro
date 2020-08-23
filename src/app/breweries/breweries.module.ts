@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BreweriesEffects } from './state/breweries.effects';
 import { BreweriesReducer } from './state/breweries.reducer';
@@ -16,6 +17,7 @@ import { BreweriesListResolver } from './breweries-list-resolver.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { BreweryService } from './shared/brewery.service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 const breweriesRoutes: Routes = [
   {
@@ -43,6 +45,7 @@ const breweriesRoutes: Routes = [
     StoreModule.forFeature('breweries', BreweriesReducer),
     RouterModule.forChild(breweriesRoutes),
     EffectsModule.forFeature([BreweriesEffects]),
+    OverlayModule,
   ],
   declarations: [
     BreweriesListComponent,
@@ -51,6 +54,11 @@ const breweriesRoutes: Routes = [
     BreweriesItemComponent,
     BreweryDetailComponent,
   ],
-  providers: [BreweryRouteActivator, BreweriesListResolver, BreweryService],
+  providers: [
+    BreweryRouteActivator,
+    BreweriesListResolver,
+    BreweryService,
+    MatSnackBar,
+  ],
 })
 export class BreweriesModule {}

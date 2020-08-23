@@ -14,10 +14,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { Error404Component } from './errors/error-404.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SearchModule } from './search/search.module';
 import { BreweriesModule } from './breweries/breweries.module';
 import { EffectsModule } from '@ngrx/effects';
+import { LoadingReducer } from './state/app.state';
 
 // import { appState } from './state/appstate.reducer';
 
@@ -32,11 +37,13 @@ import { EffectsModule } from '@ngrx/effects';
     SearchModule,
     BreweriesModule,
     BrowserModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ loadingState: LoadingReducer }),
     StoreDevtoolsModule.instrument({
       name: 'BrewBro Devtools',
       maxAge: 25,
@@ -44,7 +51,7 @@ import { EffectsModule } from '@ngrx/effects';
     }),
     EffectsModule.forRoot([]),
   ],
-  providers: [],
+  providers: [MatSnackBar, OverlayModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
